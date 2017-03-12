@@ -1,0 +1,27 @@
+{
+  "name": "ToDoList",
+  "version": "1.0.0",
+  "description": "This is an app where you can access all your **to-do** tasks and receive consolidated daily emails mentioning the tasks for the day. Additional features include a shareable link for every link and 24 X 7 availability.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirankarpurapu/ToDoList.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirankarpurapu/ToDoList/issues"
+  },
+  "homepage": "https://github.com/kirankarpurapu/ToDoList#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "mongod": "^2.0.0",
+    "mongoose": "^4.4.20",
+    "morgan": "^1.7.0"
+  }
+}
