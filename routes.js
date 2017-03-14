@@ -10,10 +10,6 @@ var router = express.Router();
 var credentials = new AWS.SharedIniFileCredentials({profile: 'ToDoListKiran-account'});
 AWS.config.credentials = credentials;
 
-// AWS.config.update({
-//   region: "us-east-1",
-//   endpoint: "arn:aws:dynamodb:us-east-1:259534586546:table/UserTable"
-// });
 
 AWS.config.update({
 	region : "us-east-1",
@@ -36,7 +32,7 @@ router.get("/", function(req, res) {
 router.post("/addRow", function(req, res) {
 	var docClient = new AWS.DynamoDB.DocumentClient();
 	var table="UserTable";
-	var User_ID = "1235";
+	var User_ID = "1238";
 	var year = 2015;
 	var title = "The Big New Movie";
 	var params = {

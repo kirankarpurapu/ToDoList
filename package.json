@@ -21,8 +21,11 @@
     "aws-sdk": "^2.27.0",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
-    "mongod": "^2.0.0",
-    "mongoose": "^4.4.20",
-    "morgan": "^1.7.0"
+    "express-session": "^1.15.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "mongoose" : "^3.8.12",
+    "static-favicon": "^2.0.0-alpha"
   }
 }

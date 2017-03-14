@@ -3,12 +3,26 @@
 var express = require("express");
 var routes = require("./routes");
 var logger = require("morgan");
+var dbConfig = require('./db.js');
+var mongoose = require('mongoose');
+mongoose.connect(dbConfig.url);
 
 
 
 var app = express();
 var jsonParser = require("body-parser").json;
 var port = process.env.PORT || 3000;
+
+
+
+// Registering the Passport middleware
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 
 // Registering the looger middleware
