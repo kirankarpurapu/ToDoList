@@ -1,28 +1,14 @@
 'use strict';
 
 var express = require("express");
-var routes = require("./routes");
+var routes = require("./routes/route");
 var logger = require("morgan");
-var dbConfig = require('./db.js');
-var mongoose = require('mongoose');
-mongoose.connect(dbConfig.url);
-
-
 
 var app = express();
+var bodyParser = require('body-parser');
 var jsonParser = require("body-parser").json;
+var validator = require('express-validator');
 var port = process.env.PORT || 3000;
-
-
-
-// Registering the Passport middleware
-var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 
 
 // Registering the looger middleware
@@ -30,27 +16,25 @@ app.use(logger("dev"));
 
 
 // Registering the middleware: using the jsonParser middleware to open the POST and GET requests
+
 app.use(jsonParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 
+//for allowing cross scripting
 
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow_Origin", "*");
-	res.header("Access-Control-Allow_Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
+// app.use(function(req, res, next) {
+// 	res.header("Access-Control-Allow_Origin", "*");
+// 	res.header("Access-Control-Allow_Headers", "Origin, X-Requested-With, Content-Type, Accept");
+// 	next();
 
-});
+// });
 
 // Registering the routes middleware and this module only works for routes that begin with /todo.
 // i.e. any request on a route starting with /todo is redirected to the routes module and the routes module
 // will have the appropriate handlers to process the requests.
 app.use("/todo", routes);
 
-
-app.use("/error", function(req, res, next){
-	var error = new Error("not found");
-	error.status = 404;
-	next(error);
-});
 
 
 // Error handler
