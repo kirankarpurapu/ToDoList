@@ -8,10 +8,11 @@ var jsonParser = require("body-parser").json;
 var router = express.Router();
 var validateUserLogin = require("../controllers/validations/loginValidation.js");
 var validateUserSignup = require("../controllers/validations/signupValidation.js");
+***KIRAN*** var validateUserOnBoarding = require("../controllers/validations/onBoardingValidation.js");
 var getUserIDIfLoginIsValid = require("../controllers/loginController/validLogin.js");
 var createUserAndGetID = require("../controllers/signupController/validSignup.js");
-
-
+***KIRAN*** getUserIDgivenUserToken = require("../controllers/loginController/validLogin.js").getUserIDgivenUserToken;
+***KIRAN*** getUserOnBoardingDetailsForUser = require("../controllers/onBoardingController/getUserOnboardDetails.js");
 //route handlers
 
 // URL: /todo
@@ -82,6 +83,20 @@ router.post("/signup", function(req, res, next) {
 });
 
 
+// URL: /todo/onboarding
+// POST handler
+router.post("/onboarding", function(req, res, next) {
+	var errors = validateUserOnBoarding(req);
+  if (errors) {
+  	console.log("ONBOARDING: error in the post body in the onboarding route");
+    res.send(errors);
+  } else {
+	var userToken = req.body.userToken;
+	var userID = getUserIDgivenUserToken(userToken);
+	var userDetailsJSON = getUserOnBoardingDetailsForUser(req);  
+	// add this userDetails JSON in the POSTGRES Database here.  
+  }
+});
 
 //exporting the router to the main path
 module.exports = router;
