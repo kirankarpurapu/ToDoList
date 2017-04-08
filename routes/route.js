@@ -2,6 +2,7 @@
 // the remainging to this file where the appropriate route handler will kick in.
 'use strict';
 
+var colors = require('colors')
 var express = require("express");
 var jsonParser = require("body-parser").json;
 var router = express.Router();
@@ -16,6 +17,7 @@ var createUserAndGetID = require("../controllers/signupController/validSignup.js
 // URL: /todo
 // GET handler
 router.get("/", function(req, res) {
+  console.log("hello".green);
 	res.json({response : "hello there, API works"});
 });
 
